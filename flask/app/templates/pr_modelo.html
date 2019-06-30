@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p id="p_models">En esta página se le muestran todos los modelos que se han almacenado en la
+  aplicación. Clickando en cualquiera de ellos puede acceder a la información
+  de os mismos, además de probar los modelos con nuevos datos.</p>
+  <h3>Aquí puede acceder a todos los modelos almacenados.</h3>
+  {% for (m, n) in models %}
+    <div class="pr_modelo"><p><span class="bold">Modelo:</span>
+      <a class="amodelos" href="{{ url_for('ver_modelo', id_modelo=n) }}"> {{ m }} </a>
+    </div>
+  {% endfor %}
+{% endblock %}

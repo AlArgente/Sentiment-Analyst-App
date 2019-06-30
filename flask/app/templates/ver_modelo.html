@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="loader" id="load">
+    <img src="{{ url_for('static', filename="images/load.gif") }}" alt="Loading...">
+  </div>
+  <div>
+    <p id="p_models">En esta página se muestra la información almacenada del modelo <span class="bold">{{ model_name }}</span>.
+    Este modelo fue creado en: <span class="bold">{{ model_hora }}</span> El idioma del dataset que se utilizó para el entrenamiento
+    fue: <span class="bold">{{ model_lang }}</span>, y se hizo una partición: <span class="bold">{{ model_t_size }}%</span> para el test.</p>
+    <h2>Preprocesamiento aplicado al modelo:</h2>
+      <ul>
+      {% for p in model_prepro %}
+      <li>{{ p }} </li>
+      {% endfor %}
+    </ul>
+    <h3>El algoritmo usado para entrenar el modelo es:</h3><p> {{ model_alg }}</p>
+    <form action="" method=post enctype="multipart/form-data" onsubmit="loading()">
+      <input type="file" name="file" accept=".csv" multiple>
+      <!--<input type="text" name="file" accept="">-->
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+{% endblock %}

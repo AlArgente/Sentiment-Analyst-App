@@ -1,8 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Hi, {{ user.username }}!</h1>
-  {% for post in posts %}
-  <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+  <h1>¡Bienvenido!</h1>
+  <div class="textini">
+    <p>Esta aplicación te permitirá resolver problemas de análisis de sentimientos,
+    además de probar modelos ya generados, o bien por usted, o bien por otros usuarios.
+    Como usuario podrás subir ficheros, en formato csv, para así entrenar un modelo,
+    siendo el usuario el que elija qué preprocesamiento desea aplicar, además
+    de qué algoritmo quiere utilizar. <br>
+    <br>
+    Un ejemplo de flujo de trabajo es el siguiente, en el que se muestra cual sería
+    el flujo de trabajo para un nuevo usuario: <br><br>
+    <img id="flujotrabajo" src="{{ url_for('static', filename="images/FlujoTtrabajo.png") }}" alt="FlujoTrabajo">
+    <br><br>
+    Las distintas funciones de preprocesamiento que te permite aplicar son:
+    <ul class="textini_ul">
+      <li><span class="bold">To_Lower</span></li>
+      <li><span class="bold">DeleteAccent</span></li>
+      <li><span class="bold">Tokenize</span></li>
+      <li><span class="bold">Stemmer</span></li>
+      <li><span class="bold">TF-IDF</span></li>
+    </ul>
+    Además el usuario podrá elegir entre dos algoritmos de clasificación:
+    <ul class="textini_alg">
+      <li><span class="bold">Bayes</span>: </li>
+      <li><span class="bold">SVM</span>: </li>
+    </ul>
+
+    Además se deberá indicar el idioma del archivo que ha sido cargado para que
+    las funciones anteriores puedan funcionar correctamente. El usuario podrá elegir
+    qué tipo de división se hará entre train-test de entre las disponibles, además de
+    indicar qué nombre tendrá el modelo que se va a entrenar.
+    </p>
+    <p>
+    Para cada modelo modelo almacenado en la aplicación el usuario podrá ver
+    tanto las funciones de preprocesamiento aplicadas como el algoritmo de
+    entrenamiento utilizado. Además podrá subir nuevos datos para probar el
+    modelo con un nuevo conjunto de datos, obteniendo después los resultados,
+    recall, precision, f1_score, obtenidos para el conjunto de datos.
+    </p>
+    <p> Para subir nuevos datos pulse <span class="bold"><a href="{{ url_for('upload') }}">aquí</a></span>.</p>
+  </div>
+  <div class="models">
+  <h3>Se muestran algunos de los modelos almacenados</h3>
+  {% for m, n in models %}
+    <p><span class="bold">Modelo:</span>
+      <a class="amodelos" href="{{ url_for('ver_modelo', id_modelo=n) }}"> {{ m }}</a>
+    </p>
   {% endfor %}
+  <p>Puede ver más modelos pinchando <a class="cabeceraa" href="{{ url_for('pr_modelo') }}"><span class="bold">aquí</span></a>.</p>
+  </div>
+
 {% endblock %}

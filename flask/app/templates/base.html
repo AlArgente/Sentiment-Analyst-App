@@ -1,17 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     {% if title %}
     <title>{{ title }} - Sentiment Analyst App</title>
     {% else %}
-    <title>Welcome to Sentiment Analyst App</title>
+    <title>Sentiment Analyst App</title>
     {% endif %}
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='javaScript/scripts.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div>Sentiment Analyst App:
-      <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('upload') }}">Upload</a></div>
-    <hr>
+    <nav id="cabecera"><span class="bold">Sentiment Analyst App:</span>
+      <a class="cabeceraa" href="{{ url_for('index') }}">Home</a>
+      <a class="cabeceraa" href="{{ url_for('upload') }}">Upload</a>
+      <a class="cabeceraa" href="{{ url_for('pr_modelo') }}">Modelos</a>
+    </nav>
+    <div id="main_block">
     {% block content %}{% endblock %}
+    </div>
+    <!-- <footer id="footer">
+      <div id="footer-content">
+       <button onclick="myFunction()">Prueba botón</button>
+      <a class="cabeceraa" href="{{ url_for('index') }}">Home</a>
+      </div>
+    </footer>-->
   </body>
 </html>

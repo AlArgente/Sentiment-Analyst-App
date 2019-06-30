@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="loader" id="load">
+    <img src="{{ url_for('static', filename="images/load.gif") }}" alt="Loading...">
+  </div>
   <h1>File Uploader</h1>
-  <form action="" method=post enctype="multipart/form-data">
-    <input type="file" name="file" accept=".csv" multiple>    
+  <p>Seleccione el archivo, en formato csv, que se utilizará para entrenar al modelo.
+    Tras subir el archivo podrá elegir las funciones de preprocesamiento y el algoritmo
+    de clasificación de entre los proporcionados.</p>
+  <p>Para que el archivo sea válido, el formato del archivo debe ser <span class="bold">csv</span>, además recuerde que
+    la columna de texto debe llamarse <span class="bold">SentimentText</span> y que la columna que tenga la clase
+    debe llamarse <span class="bold">Sentiment</span> para que puedan ser válidos en la aplicación y no de error al procesar
+    los datos.
+  </p>
+  <form action="" method=post enctype="multipart/form-data" onsubmit="loading()">
+    <input type="file" name="file" accept=".csv" multiple>
     <!--<input type="text" name="file" accept="">-->
     <input type="submit" value="Upload">
   </form>

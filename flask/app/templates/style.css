@@ -1,0 +1,37 @@
+body {
+  margin:0px;
+  background-color: #ffddcc;
+  height: 600px;
+  font-family: Helvetica, arial, sans-serif;
+  font-style: arial;
+}
+
+#cabecera {
+  background-color: #1a0d00;
+  display: block;
+  height: 34px;
+  text-align: center;
+  padding: 5px 0;
+  color: #ffddcc;
+}
+#cabecera .cabeceraa {
+  text-decoration: none;
+  color: #ffddcc;
+}
+
+#cabecera .cabeceraa:hover {
+  font-weight: bold;
+}
+
+#main_block {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+div a {
+  color: black;
+  text-decoration: none;
+}
+div a:hover {
+  color: red;
+}

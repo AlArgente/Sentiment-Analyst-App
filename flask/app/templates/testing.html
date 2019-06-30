@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Se muestra la pred del modelo para los nuevos datos.</h1>
+<button type="button" id="botoncillo" name="botoncillo" onclick="nuevaFunction()"><span>Ocultar resultados</span></button>
+<ul id="results_test">
+{% for k, v in pred.items() %}
+  <li> {{ k }}: {{ v }} </li>
+{% endfor %}
+</ul>
+<p>Figura comparativa de Recall y Precision</p>
+<img src="{{ url_for('static', filename=url) }}" height="380" width="540" alt="MyChart">
+
+<p class="download">Haga click en el siguiente enlace para descargar el modelo.</p>
+<button type="button" onclick="window.location.href='{{ url_for( 'download_model_pred', id_modelo=id_modelo) }}'" name="button_download">Download</button>
+
+
+{% endblock %}

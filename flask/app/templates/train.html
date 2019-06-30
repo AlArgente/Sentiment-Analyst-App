@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="loader" id="load">
+  <img src="{{ url_for('static', filename="images/load.gif") }}" alt="Loading...">
+</div>
+<h1>Fase de entrenamiento</h1>
+<p>En esta fase se aplicarán distintos algoritmos de preprocesamiento
+de los que sean seleccionados, en caso de no escoger ninguno se aplicarán
+unos por defecto, y posteriormente se aplicará un algoritmo de clasificación,
+svm o bayes, y después de logar entrenar el modelo, se pasará a una fase de
+proucción, en la que podrá subir más datos, para ver la eficacia del modelo
+entrenado.</p>
+<h2>Selecciona qué desea aplicar al preprocesamiento</h2>
+<form name="form-prepro" id="form-prepo" class="form-prepro" onsubmit="preproTrainValidateForm(this)" method="post">
+  <div id="prepro_list">
+    <span>Seleccione una o más</span>
+    <select multiple class="input-prepro" name="preprocessing", id="preprolist">
+      {% for d in data %}
+      <option value="{{ d.name }}">{{ d.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <p> Además debe elegir el algoritmo de clasificación que desea
+      aplicar para entrenar el modelo, que posteriormente podrá usar
+      con más datos</p>
+  </div>
+  <div>
+    <span>Elija el algoritmo de clasificación que quiere usar:</span>
+    {% for a in alg %}
+      <span class="bold">{{ a.name }}</span><input type="checkbox" id="alg_eleg" name="algoritmo" value="{{ a.name }}">
+    {% endfor %}
+  </div>
+  <div id="text_lang">
+    <p>Selecione el idioma del texto a procesar. Esto es importante para que pueda aplicarse correctamente
+      un stemmer, y se eliminen correctamente las stopswords</p>
+    <select class="sel_lang" name="sel_lang">
+      <option value="spanish">Español</option>
+      <option value="english">Inglés</option>
+    </select>
+  </div>
+  <div id="text_part">
+    <p>Elija qué partición quiere para el entrenamiento, 70-30, 80-20 o 90-10<p>
+      <select class="" name="text_parti">
+        <option value="0.3">70-30</option>
+        <option value="0.2">80-20</option>
+        <option value="0.1">90-10</option>
+      </select>
+  </div>
+  <div id="alg_clas">
+    <p> Elija si desea usar Cross Validation, o Hold out a la hora de entrenar
+    el modelo. Si elige 0 o 1 se aplicará Hold out, en caso contrario se aplicará
+    Cross Validation.</p>
+    <select class="" name="cv">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+  </div>
+  <div id="name_nodel">
+    <p> Introduzca el nombre para el modelo: </p>
+    <input name="mn" type="text" required>
+  </div>
+  <input type="submit" value="submit">
+</form>
+<div id="divbow">
+  <p>Nube de palabras (Bag of Words): </p>
+  <img id="bow" src="{{ url_for('static', filename=url) }}" alt="MyChart">
+</div>
+{% endblock %}
